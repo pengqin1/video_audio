@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+<style type="text/css">
+	.hide { display: none; }
+</style>
+<script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+
+
+<div style="margin:20px;"><label>上传视频： <input type="file" onchange="showVideo(this)"></label></div>
+<div style="margin:20px;"><label>上传音频： <input type="file" onchange="showAudio(this)"></label></div>
+
+
+
+<video src="" controls="controls" id="video" class="hide">
+	your browser does not support the video tag
+</video>
+
+<audio src="" id="audio" controls class="hide">
+	您的浏览器不支持 audio 标签。
+</audio>
+
+
+
+
+<script type="text/javascript">
+
+	function showVideo(obj){
+		$('#video').removeClass('hide').attr('src', window.URL.createObjectURL(obj.files[0]));
+	}
+	// 视频加载完毕后 获取时间
+	$('#video').on('loadeddata', function(){   // ios和安卓都不行
+		console.log($('#video')[0].duration);
+	})
+
+
+
+	function showAudio(obj){
+		$('#audio').removeClass('hide').attr('src', window.URL.createObjectURL(obj.files[0]));
+	}
+
+	// 音频加载完毕后 获取时间
+	$('#audio').on('loadeddata', function(){   // ios和安卓都不行
+		console.log($('#audio')[0].duration);
+	})
+
+
+</script>
+
+</body>
+</html>

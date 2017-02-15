@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+<script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+
+<video src="flash.mp4" controls="controls" id="video" >
+	your browser does not support the video tag
+</video>
+
+<!-- <audio src="sunsine.mp3" id="video" controls>
+	您的浏览器不支持 audio 标签。
+</audio> -->
+
+<div id="play1" style="margin-top: 20px;">播放</div>
+
+<div id="stop1" style="margin-top: 20px;">停止</div>
+
+<div id="start" style="margin-top: 20px;">从头播放</div>
+
+
+
+<script type="text/javascript">
+
+	var video = $('#video').get(0); 	// 先转化为js对象
+
+	// 视频加载完毕后 获取时间
+	$('#video').on('loadeddata', function(){   // ios和安卓都不行
+		console.log(video.duration);
+	})
+		
+	// 手动播放
+	$('#play1').click(function(){
+		video.play();
+	})
+
+	// 手动暂停	
+	$('#stop1').click(function(){
+		video.pause();
+	}) 
+
+	// 重新播放
+	$('#start').click(function(){
+		video.load();
+		video.play();
+	}) 
+
+
+
+	// 点击整个视频区域都能实现播放/暂停 (原来只能点击按钮)
+	$('#video').click(function(){
+	    if(video.paused){
+	        video.play();
+	    }else{
+	        video.pause();
+	    }
+	})
+</script>
+
+</body>
+</html>
